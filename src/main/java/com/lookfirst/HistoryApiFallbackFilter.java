@@ -57,7 +57,9 @@ public class HistoryApiFallbackFilter implements Filter {
 		HttpServletResponse response = ((HttpServletResponse) servletResponse);
 
 		String method = request.getMethod().toUpperCase();
-		String accept = request.getHeader("Accept").toLowerCase();
+		String accept = request.getHeader("Accept");
+		if (accept != null)
+			accept = accept.toLowerCase();
 		String requestURI = request.getRequestURI();
 
 		Object reentrancyKey = request.getAttribute(REENTRANCY_KEY);
